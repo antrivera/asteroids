@@ -56,6 +56,7 @@
 	window.Asteroid = Asteroid;
 	window.Game = Game;
 	window.GameView = GameView;
+	window.Ship = Ship;
 
 	document.addEventListener("DOMContentLoaded", () => {
 	  const canvas = document.getElementById('game-canvas');
@@ -157,9 +158,10 @@
 	  options.radius = this.RADIUS;
 	  options.vel = Util.randomVec(Math.random() * 5);
 
-	  // super(options);
 	  MovingObject.call(this, options);
 	}
+
+	Util.inherits(Asteroid, MovingObject);
 
 	const HEX_DIGITS = "0123456789ABCDEF";
 
@@ -178,8 +180,6 @@
 	  }
 	};
 
-	Util.inherits(Asteroid, MovingObject);
-
 	module.exports = Asteroid;
 
 
@@ -193,7 +193,7 @@
 	function Game() {
 	  this.DIM_X = 900;
 	  this.DIM_Y = 900;
-	  this.NUM_ASTEROIDS = 1;
+	  this.NUM_ASTEROIDS = 4;
 	  this.asteroids = [];
 	  this.ship = new Ship({ pos: this.randomPosition(), game: this });
 
@@ -293,7 +293,7 @@
 	const MovingObject = __webpack_require__(1);
 
 	function Ship(options) {
-	  this.RADIUS = 10;
+	  this.RADIUS = 40;
 	  this.COLOR = 'purple';
 
 	  options.radius = this.RADIUS;
@@ -303,11 +303,11 @@
 	  MovingObject.call(this, options);
 	}
 
+	Util.inherits(Ship, MovingObject);
+
 	Ship.prototype.relocate = function () {
 	  this.pos = this.game.randomPosition();
 	};
-
-	Util.inherits(Ship, MovingObject);
 
 	module.exports = Ship;
 

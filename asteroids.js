@@ -10,6 +10,7 @@ window.MovingObject = MovingObject;
 window.Asteroid = Asteroid;
 window.Game = Game;
 window.GameView = GameView;
+window.Ship = Ship;
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById('game-canvas');
